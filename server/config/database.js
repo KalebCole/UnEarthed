@@ -1,10 +1,5 @@
 import pg from "pg";
-import dotenv from "dotenv";
-
-// loads the environment variables from the .env file
-dotenv.config();
-
-console.log(process.env);
+import dotenv from "./dotenv.js";
 
 // used to set the properties to connect to the database
 const config = {
