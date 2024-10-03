@@ -1,13 +1,13 @@
 import { pool } from "./database.js";
-import dotenv from "dotenv";
+import dotenv from "./dotenv.js";
 import giftData from "../data/gifts.js";
 
-dotenv.config();
 
 // debugging
-console.log(process.env);
+// console.log(process.env);
 // password is a string
 console.log(typeof process.env.PGPASSWORD);
+
 
 // used to create out gifts table and load our json data into the db
 const createGiftsTable = async () => {

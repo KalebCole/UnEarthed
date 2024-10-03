@@ -1,29 +1,15 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import giftData from "../data/gifts.js";
+import { getGifts, getGiftById } from "../controllers/gifts.js";
+import { get } from "https";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const router = express.Router();
-router.get("/", (req, res) => {
-  console.log("Received GET request for /gifts");
-  try {
-    console.log("giftData type:", typeof giftData);
-    console.log("giftData length:", giftData.length);
+router.get("/", getGifts); // use the controller to get the gifts
 
-    console.log("First gift:", JSON.stringify(giftData[0], null, 2));
-    // console.log("Sending gifts:", JSON.stringify(giftData, null, 2));
-    res.status(200).json(giftData);
-    console.log("Response sent successfully");
-  } catch (error) {
-    console.error("Error sending JSON response:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
+router.get("/:giftId", getGiftById); // use the controller to get a gift by id
 
-router.get("/:giftId", (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, "../public/gift.html"));
-});
 export default router;
