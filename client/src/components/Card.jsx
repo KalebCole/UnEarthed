@@ -6,7 +6,9 @@ const Card = (props) => {
     
     const [gift, setGift] = useState({id: 0, name: "", pricepoint: "", audience: "", image: ""})
 
-    useEffect(() => {
+    // question: i noticed that we are setting state in every component. is this the best way to do it?
+    // question: could we just update it in the app component and pass it down as props and not have to set state in each component?
+    useEffect(() => { 
         setGift({id: props.id, name: props.name, pricepoint: props.pricepoint, audience: props.audience, image: props.image});
     }, [props]);
 
