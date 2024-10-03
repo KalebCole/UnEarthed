@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import giftsRouter from "./routes/gifts.js";
+import cors from "cors";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -14,12 +15,8 @@ console.log(process.env.PGUSER);
 console.log(typeof process.env.PGPASSWORD); // Should output 'string'
 
 const app = express();
+app.use(cors());
 
-// serves static files using middleware
-app.use("/scripts", express.static("./public/scripts"));
-// middleware = modular
-
-app.use("/public", express.static("./public"));
 app.use("/gifts", giftsRouter);
 
 app.get("/", (req, res) => {
@@ -30,7 +27,7 @@ app.get("/", (req, res) => {
     );
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 console.log(`PORT: ${PORT}`);
 
 app.listen(PORT, () => {
